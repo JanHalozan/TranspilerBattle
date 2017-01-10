@@ -1,0 +1,17 @@
+{
+  "name": "TranspilerBattle-coffee",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Coffeescript c10k",
+  "main": "src/main.coffee",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "pm2 start /usr/src/app/processes.json --interpreter coffee --no-daemon --mini-list --no-color",
+    "test": "echo \"no tests\""
+  },
+  "author": "Jan Haložan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.13.3"
+  }
+}
