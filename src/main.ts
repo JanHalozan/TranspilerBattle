@@ -19,9 +19,6 @@ class Server {
     });
 
     this.app = app;
-    // this.config();
-
-
   }
 
   public start(port: number): void {
