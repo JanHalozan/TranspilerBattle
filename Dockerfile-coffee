@@ -1,0 +1,15 @@
+# docker build -t transpiler-battle-coffee --file Dockerfile-coffee .
+# docker run -p 1337:1337 -it --rm -v /Users/janhalozan/Work/GitHub/TranspilerBattle/:/usr/app/ --name tbc transpiler-battle-coffee
+
+FROM node:7.4.0
+
+# RUN apt-get update && \
+#     apt-get install -y -qq
+
+RUN npm install -g pm2@latest coffee-script
+
+COPY . /usr/app
+WORKDIR /usr/app
+RUN npm install
+
+CMD ["npm", "run", "startcoffee"]

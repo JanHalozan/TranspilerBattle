@@ -5,8 +5,11 @@
   "description": "Coffeescript c10k",
   "main": "src/main.coffee",
   "scripts": {
-    "prestart": "npm install",
-    "start": "pm2 start /usr/src/app/processes.json --interpreter coffee --no-daemon --mini-list --no-color",
+    "prestartcoffee": "coffee -c src/main.coffee",
+    "startcoffee": "pm2 start src/main.js --no-daemon",
+    "prestarttype": "tsc src/main.ts",
+    "starttype": "pm2 src/main.js --no-daemon",
+    "prestartbabel": "babel src/main.js -o main-babel.js",
     "test": "echo \"no tests\""
   },
   "author": "Jan Haložan",

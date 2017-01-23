@@ -6,8 +6,7 @@ FROM node:7.4.0
 # RUN apt-get update && \
 #     apt-get install -y -qq
 
-RUN npm install -g pm2@latest
-RUN pm2 install coffeescript
+RUN npm install -g pm2@latest babel
 
 COPY . /usr/app
 WORKDIR /usr/app

@@ -1,0 +1,15 @@
+# docker build -t transpiler-battle-ts --file Dockerfile-typescript .
+# docker run -p 1337:1337 -it --rm -v /Users/janhalozan/Work/GitHub/TranspilerBattle/:/usr/app/ --name transpiler-battle-ts transpiler-battle-ts
+
+FROM node:7.4.0
+
+# RUN apt-get update && \
+#     apt-get install -y -qq
+
+RUN npm install -g pm2@latest typescript
+
+COPY . /usr/app
+WORKDIR /usr/app
+RUN npm install
+
+CMD ["npm", "run", "starttype"]
