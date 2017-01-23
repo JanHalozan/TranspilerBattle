@@ -1,7 +1,7 @@
 # docker build -t transpiler-battle-ts --file Dockerfile-typescript .
-# docker run -p 1337:1337 -it --rm -v /Users/janhalozan/Work/GitHub/TranspilerBattle/:/usr/app/ --name transpiler-battle-ts transpiler-battle-ts
+# docker run -p 1337:1337 -it --rm -v /Users/janhalozan/Work/GitHub/TranspilerBattle/:/usr/app/ --name tbt transpiler-battle-ts
 
-FROM node:7.4.0
+FROM node:7.0.0
 
 # RUN apt-get update && \
 #     apt-get install -y -qq
