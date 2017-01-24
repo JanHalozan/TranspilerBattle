@@ -5,12 +5,12 @@
   "description": "Jan's grad work",
   "main": "src/main.js",
   "scripts": {
-    "prestartcoffee": "coffee -c src/main.coffee",
-    "startcoffee": "pm2 start src/main.js --no-daemon",
-    "prestarttype": "tsc",
+    "prestartcoffee": "coffee --compile src --output dist",
+    "startcoffee": "pm2 start dist/main.js --no-daemon",
+    "prestarttype": "tsc --outDir dist",
     "starttype": "pm2 start src/main.js --no-daemon",
-    "prestartbabel": "babel src/main.js -o main-babel.js",
-    "startbabel": "pm2 start src/main.js --no-daemon",
+    "prestartbabel": "babel src --out-dir dist",
+    "startbabel": "pm2 start dist/main.js --no-daemon",
     "test": "echo \"no tests\""
   },
   "author": "Jan Haložan",

@@ -1,15 +1,15 @@
-# docker build -t transpiler-battle .
-# docker run -p 1337:1337 -it --rm -v /Users/janhalozan/Work/GitHub/TranspilerBattle/:/usr/app/ --name transpiler-battle transpiler-battle
+# docker build -t transpiler-battle-babel --file Dockerfile-babel .
+# docker run -p 1337:1337 -it --rm -v /Users/janhalozan/Work/GitHub/TranspilerBattle/:/usr/app/ --name tbb transpiler-battle-babel
 
 FROM node:7.0.0
 
 # RUN apt-get update && \
 #     apt-get install -y -qq
 
-RUN npm install -g pm2@latest babel
+RUN npm install -g pm2@latest babel-cli
 
 COPY . /usr/app
 WORKDIR /usr/app
 RUN npm install
 
-CMD ["pm2", "start", "src/main.coffee", "--no-daemon"]
+CMD ["npm", "run", "startbabel"]
