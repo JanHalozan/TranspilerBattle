@@ -1,14 +1,15 @@
+"use strict";
+
 express = require 'express'
 bodyParser = require 'body-parser'
 
 app = express()
-port = process.env.port || 1337
 
-#Middleware
+# Middleware
 app.use bodyParser.json()
 
 app.get '/', (req, res) ->
-  res.send 'Hello world'
+  res.send 'Hello world from CoffeeScript.'
 
 app.post '/light', (req, res) ->
   highResTime = process.hrtime()
@@ -18,5 +19,6 @@ app.post '/light', (req, res) ->
 # app.get '/heavy', (req, res) ->
 #
 
+port = process.env.port || 1337
 app.listen port, ->
   console.log 'Listening on ' + port
