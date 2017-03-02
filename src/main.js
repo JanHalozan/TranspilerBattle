@@ -2,10 +2,18 @@
 
 var express = require('express');
 
+var animals = require('./babel/animals.js');
+
 var app = express();
 
 app.get('/', function(req, res) {
   res.send("Hello world from Babel.");
+});
+
+app.get('/animal', function(req, res) {
+  var fox = new animals.Fox("Merp", "???");
+
+  res.send(fox.speak());
 });
 
 app.get('/simple-hash', function(req, res) {
