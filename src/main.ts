@@ -2,7 +2,6 @@
 
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-
 import { Dog } from './type/animals';
 
 class Server {
@@ -65,10 +64,6 @@ class Server {
     var dog = new Dog("Herp", "woof");
 
     res.send(dog.speak());
-  }
-
-  private loops(req: express.Request, res: express.Response) {
-
   }
 }
 

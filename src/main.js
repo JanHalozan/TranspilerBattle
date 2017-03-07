@@ -1,7 +1,6 @@
 "use strict";
 
 var express = require('express');
-
 var animals = require('./babel/animals.js');
 
 var app = express();
