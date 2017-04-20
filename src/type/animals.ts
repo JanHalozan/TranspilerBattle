@@ -2,7 +2,10 @@
 
 abstract class Animal
 {
-  constructor(public name: string, public voice: string) {}
+  constructor(public name: string, public voice: string)
+  {
+    
+  }
 
   speak(): string
   {

@@ -8,7 +8,7 @@ class Animal
 
   speak()
   {
-    return this.name + " says " + this.voice;
+    return `${this.name} says ${this.voice}`;
   }
 }
 

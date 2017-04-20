@@ -17,8 +17,7 @@ app.get('/animal', function(req, res) {
 
 app.get('/simple-hash', function(req, res) {
   var hash = function(str) {
-    var s1 = 1;
-    var s2 = 0;
+    var [s1, s2] = [1, 0];
 
     for (var i = 0; i < str.length; ++i) {
       s1 = (s1 + str.charCodeAt(i)) % 65521;
