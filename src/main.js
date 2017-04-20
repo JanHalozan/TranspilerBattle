@@ -1,7 +1,8 @@
 "use strict";
 
-var express = require('express');
-var animals = require('./babel/animals.js');
+const express = require('express');
+const animals = require('./babel/animals.js');
+const callbacks = require('./babel/callbacks.js');
 
 var app = express();
 
@@ -10,7 +11,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/animal', function(req, res) {
-  var fox = new animals.Fox("Merp", "???");
+  const fox = new animals.Fox("Merp", "???");
 
   res.send(fox.speak());
 });
@@ -32,11 +33,39 @@ app.get('/simple-hash', function(req, res) {
     return;
   }
 
-  var val = hash(req.query.message);
+  const val = hash(req.query.message);
   res.send('{"val": ' + val.toString() + '}');
 });
 
-var port = process.env.port || 1337;
+app.get('/image', function(req, res) {
+  callbacks.regular('The Matrix', function(err, img) {
+    if (err) {
+      console.log(err);
+      return res.status(500).json(err);
+    }
+    res.contentType('image/jpeg').end(img, 'binary');
+  });
+
+  // callbacks.promises('The Matrix')
+  // .then(function (data) {
+  //   res.contentType('image/jpeg').end(data);
+  // })
+  // .catch(function (err) {
+  //   console.log(err);
+  //   res.status(500).json(err);
+  // });
+
+  // callbacks.shorterPromises('The Matrix')
+  // .then(function (data) {
+  //   res.contentType('image/jpeg').end(data);
+  // })
+  // .catch(function (err) {
+  //   console.log(err);
+  //   res.status(500).json(err);
+  // });
+});
+
+const port = process.env.port || 1337;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
