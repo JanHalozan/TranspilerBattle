@@ -3,6 +3,7 @@
 express = require 'express'
 bodyParser = require 'body-parser'
 animals = require './coffee/animals'
+callbacks = require './coffee/callbacks'
 
 app = express()
 
@@ -31,10 +32,27 @@ app.get '/animal', (req, res) ->
 
   res.send cat.speak()
 
-app.post '/light', (req, res) ->
-  highResTime = process.hrtime()
-  microtime = highResTime[0] * 1000000 + highResTime[1] / 1000
-  res.send req.body.message + ' at: ' + microtime.toString()
+app.get '/image', (req, res) ->
+  # callbacks.regular 'The Matrix', (err, img) ->
+  #   if err?
+  #     console.log err
+  #     return res.status(500).json err
+  #
+  #   res.contentType('image/jpeg').end img, 'binary'
+
+  # callbacks.promises 'The Matrix'
+  # .then (data) ->
+  #   res.contentType('image/jpeg').end data, 'binary'
+  # .catch (err) ->
+  #   console.log err
+  #   res.status(500).json err
+
+  callbacks.shorterPromises 'The Matrix'
+  .then (data) ->
+    res.contentType('image/jpeg').end data, 'binary'
+  .catch (err) ->
+    console.log err
+    res.status(500).json err
 
 port = process.env.port || 1337
 app.listen port, ->
