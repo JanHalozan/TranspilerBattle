@@ -3,6 +3,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import { Dog } from './type/animals';
+import * as callbacks from './type/callbacks';
 
 class Server {
   public app: express.Application;
@@ -18,7 +19,8 @@ class Server {
     let pairs: [[string, (req: express.Request, res: Express.Response) => void]] = [
       ['/', this.hello],
       ['/simple-hash', this.simpleHash],
-      ['/animal', this.animal]
+      ['/animal', this.animal],
+      ['/image', this.image]
     ];
 
     for (let tuple of pairs) {
@@ -64,6 +66,35 @@ class Server {
     var dog = new Dog("Herp", "woof");
 
     res.send(dog.speak());
+  }
+
+  private image(req: express.Request, res: express.Response) {
+    // callbacks.regular("The Matrix", function(err: any, img: any) {
+    //   if (err) {
+    //     console.log(err);
+    //     return res.status(500).json(err);
+    //   }
+    //
+    //   res.contentType('image/jpeg').end(img, 'binary');
+    // });
+
+    // callbacks.promises("The Matrix")
+    // .then(function(data) {
+    //   res.contentType('image/jpeg').end(data, 'binary');
+    // })
+    // .catch(function(err: any) {
+    //   console.log(err);
+    //   res.status(500).json(err);
+    // });
+
+    callbacks.shorterPromises('The Matrix')
+    .then(function(data: any) {
+      res.contentType('image/jpeg').end(data, 'binary');
+    })
+    .catch(function(err: any) {
+      console.log(err);
+      res.status(500).json(err);
+    });
   }
 }
 

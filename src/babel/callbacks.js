@@ -6,7 +6,7 @@ const requestPromise = bluebird.promisifyAll(request);
 
 const encode = function(str) {
   return encodeURIComponent(str);
-}
+};
 
 const regular = function(title, resultCallback) {
   request.get(`http://www.omdbapi.com/?t=${encode(title)}`, function (err, response, raw) {
@@ -20,12 +20,12 @@ const regular = function(title, resultCallback) {
       encoding: null
     };
 
-    request.get(options, function (err, response, body) {
+    request.get(options, function(err, response, body) {
       if (err) {
         return resultCallback(err, null);
       }
 
-      sharp(body).resize(100).toBuffer(function (err, data) {
+      sharp(body).resize(100).toBuffer(function(err, data) {
         resultCallback(err, data);
       });
     });
